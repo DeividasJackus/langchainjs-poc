@@ -1,33 +1,37 @@
 {
-  "name": "esm-ts-poc",
-  "version": "0.1.0",
-  "description": "Node + ESM + TypeScript PoC",
-  "keywords": [],
-  "author": "Deividas Jackus <deividas@deividasjackus.com> (https://deividasjackus.com/)",
-  "license": "MIT",
-  "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "engine-strict": false,
-  "main": "dist/app.js",
-  "scripts": {
-    "clean": "rimraf dist node_modules",
-    "dev": "tsx src/app.ts",
-    "watch": "tsx watch src/app.ts",
-    "lint": "prettier --write src",
-    "test": "xo",
-    "build": "tsc",
-    "start": "node dist/app.js"
-  },
-  "dependencies": {
-    "node-fetch": "^3.3.1"
-  },
-  "devDependencies": {
-    "prettier": "^2.8.8",
-    "rimraf": "^5.0.0",
-    "tsx": "^3.12.7",
-    "typescript": "^5.0.4",
-    "xo": "^0.54.2"
-  }
+	"name": "esm-ts-poc",
+	"version": "0.1.0",
+	"description": "Node + ESM + TypeScript PoC",
+	"keywords": [],
+	"author": "Deividas Jackus <deividas@deividasjackus.com> (https://deividasjackus.com/)",
+	"license": "MIT",
+	"type": "module",
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"engine-strict": false,
+	"main": "dist/app.js",
+	"scripts": {
+		"clean": "rimraf dist node_modules",
+		"dev": "tsx src/app.ts",
+		"watch": "tsx watch src/app.ts",
+		"lint": "prettier --write src",
+		"test": "xo",
+		"build": "tsc",
+		"start": "node dist/app.js"
+	},
+	"dependencies": {
+		"langchain": "^0.0.72",
+		"serpapi": "^1.1.1"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^8.2.0",
+		"@types/node": "^20.1.1",
+		"dotenv": "^16.0.3",
+		"prettier": "^2.8.8",
+		"rimraf": "^5.0.0",
+		"tsx": "^3.12.7",
+		"typescript": "^5.0.4",
+		"xo": "^0.54.2"
+	}
 }
