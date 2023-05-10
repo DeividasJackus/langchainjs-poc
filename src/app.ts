@@ -19,6 +19,9 @@ import { HumanChatMessage, SystemChatMessage } from "langchain/schema";
 
 dotenv.config();
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const { HELICONE_API_KEY = "", OPENAI_API_KEY = "", SERPAPI_API_KEY = "" } = process.env;
+
 // 1
 // const model = new OpenAI({ temperature: 0 });
 // const prompt = "What would be a good company name a company that makes colorful socks?";
@@ -44,7 +47,7 @@ dotenv.config();
 // 4
 // const model = new OpenAI({ temperature: 0 });
 // const tools = [
-// 	new SerpAPI(process.env["SERPAPI_API_KEY"], {
+// 	new SerpAPI(SERPAPI_API_KEY, {
 // 		location: "Austin,Texas,United States",
 // 		hl: "en",
 // 		gl: "us",
@@ -151,12 +154,22 @@ dotenv.config();
 // console.log(util.inspect(response, { depth: null }));
 
 // 12
-// const chat = new ChatOpenAI({ temperature: 0 });
-// const tools = [new SerpAPI(process.env.SERPAPI_API_KEY)];
-// const agent = ChatAgent.fromLLMAndTools(chat, tools);
-// const executor = AgentExecutor.fromAgentAndTools({ agent, tools });
-// const response = await executor.run("What's the weather in Copenhagen?");
-// console.log(util.inspect(response, { depth: null }));
+const chat = new ChatOpenAI(
+	{ temperature: 0 },
+	{
+		basePath: "https://oai.hconeai.com/v1",
+		baseOptions: {
+			headers: {
+				"Helicone-Auth": `Bearer ${HELICONE_API_KEY}`,
+			},
+		},
+	},
+);
+const tools = [new SerpAPI(SERPAPI_API_KEY)];
+const agent = ChatAgent.fromLLMAndTools(chat, tools);
+const executor = AgentExecutor.fromAgentAndTools({ agent, tools });
+const response = await executor.run("What's the weather in Copenhagen, celsius?");
+console.log(util.inspect(response, { depth: null }));
 
 // 13
 // const chat = new ChatOpenAI({ temperature: 0 });
